@@ -1,13 +1,19 @@
 <template>
   <h1 class="text-2xl mt-10">{{name}} 입니당</h1>
-  <button class="block bg-amber-400" @click="changeName">Name Change Click!</button>
+  <!-- 부모 자식 prop 전달 연습 -->
+  <Button class="amber" text="Name Change Click!" @click="changeName"></Button>
   <button :class="colorClass.blue" @click="changeColor">Color Change Click!</button>
   <h1 :class="reactiveClass.color" @click="changeReactive">reactive 연습 입니당 {{reactiveClass.text}}</h1>
-  <Button class="amber"></Button>
+
+  <!-- 부모 자식 객체 전달 연습 -->
+  <LabelInput ></LabelInput>
+
 </template>
 
 <script setup>
 import {ref, reactive} from "vue";
+import Button from "@/components/Button.vue";
+import LabelInput from "@/components/LabelInput.vue";
 
 const name = ref("제리");
 const colorClass = reactive({
@@ -19,11 +25,7 @@ const reactiveClass = reactive({
 });
 
 const changeName = () => {
-  if(name.value === "제리") {
-    name.value = "뽀롱";
-  }else {
-    name.value = "제리";
-  }
+  name.value = name.value === "제리" ? "뽀롱" : "제리";
 };
 
 const changeColor = () => {
